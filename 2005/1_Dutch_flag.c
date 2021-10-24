@@ -5,6 +5,8 @@
 //
 
 #include<stdio.h>
+
+#define SWAP(x, y) do{if(&(x)==&(y))break;(x)=(x)+(y);(y)=(x)-(y);(x)=(x)-(y);}while(0);
 //#define test
 #define run
 
@@ -22,37 +24,32 @@ int main() {
     }
 #endif
 #ifdef test
-    int a[]={-1,-2,-3,4,5,6,-7,-8,9,0};
-    int len=sizeof(a)/sizeof(int);
+    int a[] = {-1, -2, -3, 4, 0, 6, -7, -8, 9, 0};
+    int N = sizeof(a) / sizeof(int);
 #endif
     FlagSort(a, N - 1);
     for (int i = 0; i < N; i++) {
-        printf("%d ", a[i]);
+        printf("%d\t", a[i]);
     }
 
 }
 
 void FlagSort(int a[], int len) {
 //将元素值按负、零、正的顺序进行排列
-    int i = 0, j = 0, k = len;
-    int temp;
+    int i = 0, j = 0, k = len;//i指向负数,j指向0，k指向正数
     int sign;
     while (j <= k) {
-        sign = (a[j] == 0) ? 0 : (a[j] > 0) ? 1 : -1;//用三元表达式实现上面一行代码；
+        sign = (a[j] == 0) ? 0 : (a[j] > 0) ? 1 : -1;//判断当前元素的正负性
         switch (sign) {
             case -1:
-                temp = a[j];
-                a[j] = a[i];
-                a[i] = temp;
+                SWAP(a[i], a[j]);
                 i++, j++;
                 break;
             case 0:
                 j++;
                 break;
             case 1:
-                temp = a[j];
-                a[j] = a[k];
-                a[k] = temp;
+                SWAP(a[j], a[k]);
                 k--;
                 break;
             default:
@@ -60,5 +57,4 @@ void FlagSort(int a[], int len) {
                 break;
         }
     }
-
 }
