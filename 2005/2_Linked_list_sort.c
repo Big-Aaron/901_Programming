@@ -36,7 +36,6 @@ int main(void) {
 pNode input(int N) {
     pNode p;
     pNode Head = (Node *) malloc(sizeof(Node));
-    Head->num = -1;
     Head->next = NULL;
     p = Head;
     for (int i = 0; i < N; ++i) {
@@ -53,7 +52,6 @@ pNode input(int N) {
 
 pNode merger(pNode pa, pNode pb) {
     pNode Head = (Node *) malloc(sizeof(Node));
-    Head->num = -1;
     pNode AHead, BHead;
     AHead = pa->next;
     BHead = pb->next;
