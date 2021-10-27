@@ -14,20 +14,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//#define test1
-#define run1
+#define test1
+//#define run1
 
-//#define test2
-#define run2
+#define test2
+//#define run2
 
 #define Numsize 8
 #define pwd_stud "./stud.dat"
 #define pwd_stud_sort "./stud_sort.dat"
 
 // 使用fwrite将数据写入文件，需要用fread读出数据，此时文件是二进制形式，人不可读，但其实打开文件时用 wb/b rb/r 都可以
-#define write_file_by_fwrite
+//#define write_file_by_fwrite
 // 使用fprintf将数据写入文件，需要用fscanf读出数据，此时文件是文本形式，人可读，但其实打开文件时用 wb/b rb/r 都可以
-//#define write_file_by_fprintf
+#define write_file_by_fprintf
 
 typedef struct student {
     char name[Numsize];
@@ -35,92 +35,11 @@ typedef struct student {
     float ave;
 } student;
 
-int cmpfun(const void *a, const void *b) {
-    return (*(student *) a).ave < (*(student *) b).ave ? 1 : -1;
-}
-
-void Average_score_sort_array(char *names[10], float *scores[10]) {
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 5; ++j) {
-            scores[i][5] += scores[i][j];
-        }
-        scores[i][5] /= 5;
-    }
-    float *ftemp = NULL;
-    char *Ctemp = NULL;
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10 - i - 1; ++j) {
-            if (scores[j][5] < scores[j + 1][5]) {
-                ftemp = scores[j];
-                scores[j] = scores[j + 1];
-                scores[j + 1] = ftemp;
-                Ctemp = names[j];
-                names[j] = names[j + 1];
-                names[j + 1] = Ctemp;
-            }
-        }
-    }
-    printf("排序后的结果为:\n");
-    for (int i = 0; i < 10; ++i) {
-        printf("学号:%s\t各科目成绩:", names[i]);
-        for (int j = 0; j < 5; ++j) {
-            printf("%2.2f\t", scores[i][j]);
-        }
-        printf("平均分:%2.2f\n", scores[i][5]);
-    }
-}
-
-void Average_score_struct_write_by_fwrite(student students[10], char *pwd) {
-    FILE *fp;
-    if ((fp = fopen(pwd, "wb")) == NULL) {
-        printf("can not open file %s", pwd);
-        exit(1);
-    }
-    for (int i = 0; i < 10; ++i) {
-        students[i].ave = 0;
-        for (int j = 0; j < 5; ++j) {
-            students[i].ave += students[i].score[j];
-        }
-        students[i].ave /= 5;
-    }
-    fwrite(students, sizeof(student), 10, fp);
-    fclose(fp);
-}
-
-
-void Average_score_struct_write_by_fprintf(student students[10], char *pwd) {
-    FILE *fp;
-    if ((fp = fopen(pwd, "w")) == NULL) {
-        printf("can not open file %s", pwd);
-        exit(1);
-    }
-    for (int i = 0; i < 10; ++i) {
-        fprintf(fp, "%s\t", students[i].name);
-        students[i].ave = 0;
-        for (int j = 0; j < 5; ++j) {
-            fprintf(fp, "%2.2f\t", students[i].score[j]);
-            students[i].ave += students[i].score[j];
-        }
-        students[i].ave /= 5;
-        fprintf(fp, "%2.2f\n", students[i].ave);
-    }
-    fclose(fp);
-}
-
-void Average_score_sort_struct(student students[10]) {
-    qsort(students, 10, sizeof(student), cmpfun);
-
-#ifdef write_file_by_fwrite
-    Average_score_struct_write_by_fwrite(students, pwd_stud_sort);
-#endif
-
-#ifdef write_file_by_fprintf
-    Average_score_struct_write_by_fprintf(students, pwd_stud_sort);
-#endif
-}
-
 int main() {
-
+    void Average_score_sort_array();
+    void Average_score_struct_write_by_fwrite();
+    void Average_score_struct_write_by_fprintf();
+    void Average_score_sort_struct();
 #ifdef test1
     char *names[10] = {"001", "002", "003", "004", "005", "006", "007", "008", "009", "010"};
     float score1[6] = {1, 2, 3, 4, 5, 0};
@@ -260,4 +179,88 @@ int main() {
     }
 #endif
 
+}
+
+void Average_score_sort_array(char *names[10], float *scores[10]) {
+    for (int i = 0; i < 10; ++i) {
+        for (int j = 0; j < 5; ++j) {
+            scores[i][5] += scores[i][j];
+        }
+        scores[i][5] /= 5;
+    }
+    float *ftemp = NULL;
+    char *Ctemp = NULL;
+    for (int i = 0; i < 10; ++i) {
+        for (int j = 0; j < 10 - i - 1; ++j) {
+            if (scores[j][5] < scores[j + 1][5]) {
+                ftemp = scores[j];
+                scores[j] = scores[j + 1];
+                scores[j + 1] = ftemp;
+                Ctemp = names[j];
+                names[j] = names[j + 1];
+                names[j + 1] = Ctemp;
+            }
+        }
+    }
+    printf("排序后的结果为:\n");
+    for (int i = 0; i < 10; ++i) {
+        printf("学号:%s\t各科目成绩:", names[i]);
+        for (int j = 0; j < 5; ++j) {
+            printf("%2.2f\t", scores[i][j]);
+        }
+        printf("平均分:%2.2f\n", scores[i][5]);
+    }
+}
+
+void Average_score_struct_write_by_fwrite(student students[10], char *pwd) {
+    FILE *fp;
+    if ((fp = fopen(pwd, "wb")) == NULL) {
+        printf("can not open file %s", pwd);
+        exit(1);
+    }
+    for (int i = 0; i < 10; ++i) {
+        students[i].ave = 0;
+        for (int j = 0; j < 5; ++j) {
+            students[i].ave += students[i].score[j];
+        }
+        students[i].ave /= 5;
+    }
+    fwrite(students, sizeof(student), 10, fp);
+    fclose(fp);
+}
+
+
+void Average_score_struct_write_by_fprintf(student students[10], char *pwd) {
+    FILE *fp;
+    if ((fp = fopen(pwd, "w")) == NULL) {
+        printf("can not open file %s", pwd);
+        exit(1);
+    }
+    for (int i = 0; i < 10; ++i) {
+        fprintf(fp, "%s\t", students[i].name);
+        students[i].ave = 0;
+        for (int j = 0; j < 5; ++j) {
+            fprintf(fp, "%2.2f\t", students[i].score[j]);
+            students[i].ave += students[i].score[j];
+        }
+        students[i].ave /= 5;
+        fprintf(fp, "%2.2f\n", students[i].ave);
+    }
+    fclose(fp);
+}
+
+int cmpfun(const void *a, const void *b) {
+    return (*(student *) a).ave < (*(student *) b).ave ? 1 : -1;
+}
+
+void Average_score_sort_struct(student students[10]) {
+    qsort(students, 10, sizeof(student), cmpfun);
+
+#ifdef write_file_by_fwrite
+    Average_score_struct_write_by_fwrite(students, pwd_stud_sort);
+#endif
+
+#ifdef write_file_by_fprintf
+    Average_score_struct_write_by_fprintf(students, pwd_stud_sort);
+#endif
 }
