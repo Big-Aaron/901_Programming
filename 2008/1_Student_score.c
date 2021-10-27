@@ -24,9 +24,9 @@
 #define pwd_stud "./stud.dat"
 #define pwd_stud_sort "./stud_sort.dat"
 
-// 使用fwrite将数据写入文件，需要用fread读出数据，此时文件是二进制形式，人不可读，但其实打开文件时用 wb/b rb/r 都可以
+// 使用fwrite将数据写入文件，需要用fread读出数据，此时文件是二进制形式，人不可读，但其实打开文件时用 wb/b rb/r 都可以，本人默认此时为:二进制文件
 //#define write_file_by_fwrite
-// 使用fprintf将数据写入文件，需要用fscanf读出数据，此时文件是文本形式，人可读，但其实打开文件时用 wb/b rb/r 都可以
+// 使用fprintf将数据写入文件，需要用fscanf读出数据，此时文件是文本形式，人可读，但其实打开文件时用 wb/b rb/r 都可以，本人默认此时为:文本文件
 #define write_file_by_fprintf
 
 typedef struct student {
