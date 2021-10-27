@@ -9,10 +9,11 @@
 #include <stdlib.h>
 // mac系统没c盘，缩写改了个文件读取和输出地址，./ 即当前可执行程序所在位置
 // windows下/应写为转移字符//，即为"C:\\goods\\INFO.dat"
+// dat文件具体是文本文件还是二进制文件，看你心情
 #define from "./INFO.dat"
 #define to "./KK.dat"
 #define MaxSize 20
-//#define test
+#define test
 typedef struct Good {
     unsigned int NO;
     char Name[MaxSize];
