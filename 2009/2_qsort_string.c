@@ -14,7 +14,7 @@
 #define MaxSize 1001
 
 int cmpstr(const void *a, const void *b) {
-    return strcmp(*(char **) a, *(char **) b);
+    return strcmp(*(char**) a, *(char **) b);// 注意强转的类型
 }
 
 int main(void) {
