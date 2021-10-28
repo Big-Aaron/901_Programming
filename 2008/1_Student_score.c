@@ -129,7 +129,7 @@ int main() {
         exit(1);
     }
     for (i = 0; i < 10; ++i) {
-        fread(students, sizeof(student), 10, fp);
+        fread(students, sizeof(student), 1, fp);
         printf("学号:\t%s\t各科成绩:\t", students[i].name);
         for (int j = 0; j < 5; ++j) { printf("%5.2f\t", students[i].score[j]); }
         printf("\t平均分:%5.2f\n", students[i].ave);
