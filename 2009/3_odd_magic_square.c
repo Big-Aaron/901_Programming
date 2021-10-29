@@ -7,29 +7,22 @@
 
 #include <stdio.h>
 
-#define N 5
-int square[N][N] ;
+#define N 3
+int square[N][N];
+
 int main() {
-    int index = 0;
+    int index = 1;
     int i = 0;
     int j = N / 2;
-    int flag = 1;
-    while (index < N * N) {
-        square[i][j] = index+1;
-        if (++index % N == 0) {
-            flag *= -1;
-            i = i;
-            j = (j + 1 + N) % N;
-            continue;
-        }
-        if (flag == 1) {
-            i = (i + 1 + N) % N;
-            j = (j + 1 + N) % N;
-        } else {
-            i = (i - 1 + N) % N;
+    while (index <= N * N) {
+        if (square[i][j] != 0) {
+            i = (i + 2 + N) % N;
             j = (j - 1 + N) % N;
-
         }
+        square[i][j] = index;
+        i = (i - 1 + N) % N;
+        j = (j + 1 + N) % N;
+        index++;
     }
     for (i = 0; i < N; ++i) {
         for (j = 0; j < N; ++j) {
