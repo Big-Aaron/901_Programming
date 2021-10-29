@@ -9,12 +9,13 @@
 // 题目中没有说出现相同最长等值段时怎么处理，所以默认取最开始的那段
 #include <stdio.h>
 
-//#define test
+#define test
 
-#define run
+//#define run
 
 int main(void) {
     void segment();
+    void maxLen();
 #ifdef run
     int N;
     printf("请输入数列长度:\t");
@@ -30,6 +31,23 @@ int main(void) {
     int A[10] = {1, 1, 1, 2, 2, 2, 2, 2, 5, 5};
 #endif
     segment(A, N);
+    maxLen(A, N);
+}
+
+void maxLen(int *A, int N) {
+    int len = 1;
+    int right;
+    for (int i = 1; i < N; ++i) {
+        if (A[i] == A[i - len]) {
+            len++;
+            right = i;
+        }
+    }
+    if (len < 2) {
+        printf("not have");
+    } else {
+        printf("最长等值段为:%d,首位置为%d,末位置为%d(下标从1开始)\n", len, right - len + 2, right + 1);
+    }
 }
 
 void segment(int *A, int N) {
@@ -55,7 +73,7 @@ void segment(int *A, int N) {
     if (max < 2) {
         printf("not have");
     } else {
-        printf("最长等值段为:%d,首位置为%d,末位置为%d", max, start + 1, end + 1);
+        printf("最长等值段为:%d,首位置为%d,末位置为%d(下标从1开始)\n", max, start + 1, end + 1);
     }
 }
 
