@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define N 10
 #define MaxSize 20
 typedef struct personInfo {
     int num;
@@ -18,10 +19,10 @@ int main() {
     void R_Info();
     void W_Info1();
     void W_Info2();
-    personInfo personsInfo[2];
-    R_Info(personsInfo, 2);
-    W_Info1(personsInfo, 2);
-    W_Info2(personsInfo, 2);
+    personInfo personsInfo[N];
+    R_Info(personsInfo, N);
+    W_Info1(personsInfo, N);
+    W_Info2(personsInfo, N);
 }
 
 void R_Info(personInfo *personsInfo, int len) {
