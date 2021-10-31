@@ -44,7 +44,6 @@ pNode create(int N) {
     pNode Head = (Node *) malloc(sizeof(Node));
     Head->next = NULL;
     p = Head;
-    int temp;
     for (int i = 0; i < N; ++i) {
         pNode node = (Node *) malloc(sizeof(Node));
         node->next = NULL;
