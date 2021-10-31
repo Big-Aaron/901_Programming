@@ -2,7 +2,7 @@
 // 编写一个函数，输出整数m的全部素数因子。例如，m=120时，素数因子为:2,2,2,3,5。
 //
 
-// 完美复刻2002年真题
+// 完美复刻2002年真题,不过要求非递归
 
 #include <stdio.h>
 #include <math.h>
@@ -27,12 +27,14 @@ int IsPrime(int n) {
 }
 
 void prime(int n) {
-    if (n <= 0)return;
-    for (int i = 2; i <= n; ++i) {
+    int i = 2;
+    while (n > 0 && i <= n) {
         if (IsPrime(i) && n % i == 0) {
-            printf("\t%d\t",i);
-            prime(n/i);
-            return;
+            printf("\t%d\t", i);
+            n = n / i;
+            i = 2;
+            continue;
         }
+        i++;
     }
 }
