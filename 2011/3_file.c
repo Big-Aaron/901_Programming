@@ -28,8 +28,8 @@ int distinction(char c) {
 int main() {
     FILE *fp;
     if ((fp = fopen("./file1.txt", "r")) == NULL) {
-        printf("can not open file");
-        exit(1);
+        fprintf(stderr, "can open file");
+        exit(EXIT_FAILURE);
     }
     int ch;
     while (!feof(fp)) {

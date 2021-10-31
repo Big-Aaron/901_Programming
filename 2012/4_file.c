@@ -24,8 +24,8 @@ typedef struct Book {
 void create_db() {
     FILE *fp;
     if ((fp = fopen(pwdIn, "w")) == NULL) {
-        printf("can not open file");
-        exit(1);
+        fprintf(stderr, "can open file %s", pwdIn);
+        exit(EXIT_FAILURE);
     }
     for (int i = 0; i < 10; ++i) {
         fprintf(fp, "%c %d\n", (char) ('A' + i), i * 6);
@@ -41,12 +41,12 @@ int main(void) {
 #endif
     FILE *fin, *fout;
     if ((fin = fopen(pwdIn, "r")) == NULL) {
-        printf("can not open file");
-        exit(1);
+        fprintf(stderr, "can open file %s", pwdIn);
+        exit(EXIT_FAILURE);
     }
     if ((fout = fopen(pwdOut, "w")) == NULL) {
-        printf("can not open file");
-        exit(1);
+        fprintf(stderr, "can open file %s", pwdout);
+        exit(EXIT_FAILURE);
     }
     Book book;
     while (!feof(fin)) {

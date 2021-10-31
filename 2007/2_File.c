@@ -23,8 +23,8 @@ typedef struct Good {
 void create_db() {//创造读取的文件
     FILE *fto;
     if ((fto = fopen(from, "w")) == NULL) {
-        printf("can not open %s file", from);
-        exit(1);
+        fprintf(stderr, "can open file %s", from);
+        exit(EXIT_FAILURE);
     }
     char *goodNames[] = {"Mac_Pro", "Pro_Display_XDR", "Macbook_Pro", "iPad_Pro", "iPhone_Pro", "Apple_Watch",
                          "Apple_Pencil", "AirPods_Pro", "HomePod", "AirTag"};
@@ -41,12 +41,12 @@ int main() {
     // 应该单独写个函数进行读取，满足单一复用原则，但我懒，嘿嘿！
     FILE *fin, *fto;
     if ((fin = fopen(from, "r")) == NULL) {
-        printf("can not open %s file", from);
-        exit(1);
+        fprintf(stderr, "can open file %s", from);
+        exit(EXIT_FAILURE);
     }
     if ((fto = fopen(to, "w")) == NULL) {
-        printf("can not open %s file", to);
-        exit(1);
+        fprintf(stderr, "can open file %s", to);
+        exit(EXIT_FAILURE);
     }
     Good * good = (Good *) malloc(sizeof(Good));
     while (!feof(fin)) {
