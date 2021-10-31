@@ -20,13 +20,13 @@ int main(void) {
 
 #ifdef test
     int A[] = {4, 2, 7, 7, 10, 4, 7, 5, 4, 2, 9, 3, 1, 6, 2};
-    int N = sizeof(A)/sizeof(int);
+    int N = sizeof(A) / sizeof(int);
 #endif
 #ifdef run
     int N;
     printf("请输入数组元素的个数:\t");
     scanf("%d", &N);
-    int A[N] = {4, 2, 7, 10, 4, 7, 1, 6, 2};
+    int A[N];
     for (int i = 0; i < N; ++i) {
         printf("请输入第%d个数组元素:\t", i + 1);
         scanf("%d", &A[i]);
