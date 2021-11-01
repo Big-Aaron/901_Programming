@@ -55,7 +55,7 @@ int main(void) {
         exit(EXIT_FAILURE);
     }
     if ((fout = fopen(pwdOut, "w")) == NULL) {
-        fprintf(stderr, "can open file %s", pwdIn);
+        fprintf(stderr, "can open file %s", pwdOut);
         exit(EXIT_FAILURE);
     }
     for (int i = 0; i < N; ++i) {
