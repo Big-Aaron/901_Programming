@@ -93,7 +93,7 @@ int main(void) {
 }
 
 int cmpfun(const void *a, const void *b) {
-    ((Student *) a)->sum < ((Student *) b)->sum ? 1 : -1;
+    return ((Student *) a)->sum < ((Student *) b)->sum ? 1 : -1;
 }
 
 void sub(Student students[N]) {
