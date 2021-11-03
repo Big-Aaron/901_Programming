@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-#define MaxSize 1001
+//#define MaxSize 1001
 
 int main(void) {
 
