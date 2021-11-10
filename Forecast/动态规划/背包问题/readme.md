@@ -1,5 +1,5 @@
 借用《代码随想录》的一张背包问题的分类图
-![img.png](https://github.com/Big-Aaron/901__Programming/tree/master/img/backpack.png)
+![img.png](https://raw.githubusercontent.com/Big-Aaron/901__Programming/master/img/backpack.png)
 
 # **0 - 1背包**
     有 N 件物品和一个最多能被重量为 W 的背包。
