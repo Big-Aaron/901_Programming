@@ -46,7 +46,7 @@ int main(void) {
     }
 
     for (int i = 1; i < N; ++i) {// 先遍历产品
-        for (int j = M; j >= 0; --j) {// 再遍历利润,逆推法
+        for (int j = M - 1; j >= 0; --j) {// 再遍历利润,逆推法
             int max = 0;
             for (int k = j; k >= 0; --k) {// 寻找最大利润
                 int temp = dp[k] + profit[i][j - k];
