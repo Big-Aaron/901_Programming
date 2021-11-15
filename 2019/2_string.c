@@ -31,7 +31,7 @@ int main(void) {
         c = getchar();
     }
 //    char str[MaxSize];
-//    // 使用fgets函数会将符号'\'识别为'\\'，一个字符变两个
+//    // 使用fgets函数会将最后的换行符读入
 //    fgets(str, MaxSize, stdin);
 //    // 使用scanf函数无法识别空格，scanf会把空格当做发送缓冲区数据的指令
 //    scanf("%s", str);
