@@ -12,50 +12,57 @@
 //  |                              |
 // 17  ->  18  -> 19  ->  20  ->  21
 
-// 画图比写程序还麻烦
+// 一开始以为画图比写程序还麻烦，然后...
+// 这不是我写的，太丢人了！
 
 #include <stdio.h>
 
-#define N 5
-
-void out(int A[N][N]) {
-    for (int k = 0; k < N; ++k) {
-        for (int l = 0; l < N; ++l) {
-            printf("%3d", A[k][l]);
-        }
-        printf("\n");
-    }
-}
+#define N 4
 
 int main() {
     int A[N][N] = {0};
-    int wal = 1;
-    int counter = 1;
+    if (N == 1) {
+        A[0][0] = 1;
+        goto end;
+    }
+    if (N == 2) {
+        A[0][0] = 1, A[0][1] = 2, A[1][1] = 3, A[1][0] = 4;
+        goto end;
+    }
+    A[0][0] = 1, A[0][1] = 2, A[1][1] = 3, A[1][0] = 4;
+    int wal = 2;
+    int counter = 5;
     int i, j, k;
-    i = 0, j = 0, k = 0;
+    i = 2, j = 0;
     while (counter <= N * N) {
         for (k = j; k <= wal; ++k) {
             A[i][k] = counter++;
+            if (counter > N * N) goto end;
         }
-        out(A);
-        j=--k,i++;
-        for (k = i; k < i + wal; ++k) {
+        j = --k, i--;
+        for (k = i; k >= 0; --k) {
             A[k][j] = counter++;
+            if (counter > N * N) goto end;
         }
-        out(A);
-        i=--k;j--;
+        i = ++k, j++;
+        for (k = j; k <= j; ++k) {
+            A[i][k] = counter++;
+            if (counter > N * N) goto end;
+        }
+        j = --k, i++;
+        for (k = i; k <= i + wal; ++k) {
+            A[k][j] = counter++;
+            if (counter > N * N) goto end;
+        }
+        i = --k, j--;
         for (k = j; k >= 0; --k) {
             A[i][k] = counter++;
+            if (counter > N * N) goto end;
         }
-        out(A);
-        j=++k;i++;
-        for (k = i; k < i + wal; ++k) {
-            A[k][j] = counter++;
-        }
-        out(A);
-        i=--k;j++;
-        wal++;
+        j = ++k, i++;
+        wal += 2;
     }
+    end:
     for (int l = 0; l < N; ++l) {
         for (int m = 0; m < N; ++m) {
             printf("%3d", A[l][m]);
