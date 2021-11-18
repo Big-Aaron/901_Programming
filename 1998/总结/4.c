@@ -17,6 +17,8 @@ int main() {
 
     printf("\n");
     for (int i = 0; i < 3; ++i) {
+        // 考察这种题，如同求 3*4 阶行列式。
         printf("%s %s %c %s\n", a[i].s, a[i].ptr->s, ++a[i].s[i], ++p++->ptr->s);
+        //printf("%p %p\n",a[i].ptr->s,++p++->ptr->s);
     }
 }
