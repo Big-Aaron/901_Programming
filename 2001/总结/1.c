@@ -6,6 +6,10 @@ int main() {
     int k;
     p = s;
     for (k = 1; k < 4; ++k) {
+        printf("%c", *p[k]);// OIA
+    }
+    printf("\n");
+    for (k = 1; k < 4; ++k) {
         printf("%c", (*p)[k]);// GCD
     }
 }
